@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatelessWidget {
-  final VoidCallback onPressed;
-  final double width;
-  final String text;
   const PrimaryButton({
     Key key,
     @required this.onPressed,
     @required this.text,
     @required this.width,
   }) : super(key: key);
+
+  final VoidCallback onPressed;
+  final double width;
+  final String text;
+  
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -21,7 +23,7 @@ class PrimaryButton extends StatelessWidget {
             onPressed: onPressed,
             child: Text(
               text,
-              style: Theme.of(context).textTheme.subtitle1
+              style: Theme.of(context).textTheme.subtitle1,
             ),
           ),
         ),

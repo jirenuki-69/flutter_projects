@@ -3,11 +3,8 @@ import 'package:flutter_statusbarcolor/flutter_statusbarcolor.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'screens/Citas/citas.dart';
 import 'screens/Home/home.dart';
 import 'screens/Login/login.dart';
-import 'screens/Portafolio/portafolio.dart';
-import 'screens/Recomendaciones/recomendaciones.dart';
 import 'screens/SignUp/sign_up.dart';
 import 'theme.dart';
 
@@ -37,6 +34,8 @@ class MyApp extends StatelessWidget {
       primaryColor: EbodasColors.primary,
       accentColor: EbodasColors.secondary,
       backgroundColor: EbodasColors.light,
+      highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
       textTheme: GoogleFonts.openSansTextTheme().apply(
         displayColor: EbodasColors.text,
         bodyColor: EbodasColors.text,
@@ -82,9 +81,27 @@ class MyApp extends StatelessWidget {
         enabledBorder: _lightBorder,
         focusedBorder: _lightBorder,
       ),
+      tabBarTheme: TabBarTheme(
+        labelPadding: EdgeInsets.symmetric(horizontal: 0),
+        unselectedLabelColor: EbodasColors.text,
+        unselectedLabelStyle: TextStyle(
+          fontSize: 14,
+        ),
+        labelStyle: TextStyle(
+          color: EbodasColors.text,
+          fontSize: 14,
+        ),
+        labelColor: EbodasColors.secondary,
+      ),
+      appBarTheme: AppBarTheme(
+        backgroundColor: EbodasColors.light,
+        elevation: 0,
+      ),
     );
     final darkTheme = ThemeData(
       brightness: Brightness.dark,
+      highlightColor: Colors.transparent,
+      splashColor: Colors.transparent,
       primaryColorLight: EbodasColors.light,
       scaffoldBackgroundColor: EbodasColors.dark,
       primaryColor: EbodasColors.primaryDark,
@@ -135,6 +152,22 @@ class MyApp extends StatelessWidget {
         enabledBorder: _darkBorder,
         focusedBorder: _darkBorder,
       ),
+      tabBarTheme: TabBarTheme(
+        labelPadding: EdgeInsets.symmetric(horizontal: 0),
+        unselectedLabelColor: EbodasColors.light,
+        unselectedLabelStyle: TextStyle(
+          fontSize: 14,
+        ),
+        labelStyle: TextStyle(
+          color: EbodasColors.light,
+          fontSize: 14,
+        ),
+        labelColor: EbodasColors.primaryDark,
+      ),
+      appBarTheme: AppBarTheme(
+        backgroundColor: EbodasColors.dark,
+        elevation: 0,
+      ),
     );
     FlutterStatusbarcolor.setStatusBarColor(Colors.transparent);
     return MaterialApp(
@@ -146,9 +179,6 @@ class MyApp extends StatelessWidget {
         '/Login': (context) => LoginScreen(),
         '/Signup': (context) => SignUpScreen(),
         '/Home': (context) => HomeScreen(),
-        '/Home/Portafolio': (context) => Portafolio(),
-        '/Home/Recomendaciones': (context) => Recomendaciones(),
-        '/Home/Citas': (context) => Citas(),
       },
     );
   }

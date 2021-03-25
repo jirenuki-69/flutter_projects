@@ -5,11 +5,13 @@ class TextInput extends StatelessWidget {
   final String hintText;
   final double spacing;
   final TextInputType keyboardType;
+  final ValueChanged<String> onSubmit;
 
   const TextInput({
     Key key,
     @required this.icon,
     @required this.hintText,
+    @required this.onSubmit,
     this.spacing = 20,
     this.keyboardType = TextInputType.text,
   }) : super(key: key);
@@ -30,6 +32,7 @@ class TextInput extends StatelessWidget {
             ),
             hintText: hintText,
           ),
+          onSubmitted: onSubmit,
         ),
         SizedBox(height: spacing),
       ],

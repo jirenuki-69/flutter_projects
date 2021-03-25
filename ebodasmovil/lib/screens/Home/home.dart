@@ -1,13 +1,53 @@
+import 'package:ebodasmovil/screens/Home/Tabs/Citas/citas.dart';
+import 'package:ebodasmovil/screens/Home/Tabs/Portafolio/portafolio.dart';
+import 'package:ebodasmovil/screens/Home/Tabs/Recomendaciones/recomendaciones.dart';
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatelessWidget {
+import 'components/header.dart';
+
+class HomeScreen extends StatefulWidget {
   const HomeScreen({Key key}) : super(key: key);
 
   @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(
-        child: Text('Vale Chicos hay Home'),
+    return DefaultTabController(
+      length: 3,
+      child: Scaffold(
+        appBar: AppBar(
+          leading: SizedBox.shrink(),
+          toolbarHeight: 140,
+          flexibleSpace: Header(),
+          bottom: TabBar(
+            indicator: UnderlineTabIndicator(
+              borderSide: BorderSide(
+                color: Colors.transparent,
+              ),
+            ),
+            tabs: <Tab>[
+              Tab(
+                text: 'Portafolio',
+              ),
+              Tab(
+                text: 'Recomendaciones',
+              ),
+              Tab(
+                text: 'Citas',
+              ),
+            ],
+          ),
+        ),
+        body: TabBarView(
+          children: <Widget>[
+            Portafolio(),
+            Recomendaciones(),
+            Citas(),
+          ],
+        ),
       ),
     );
   }

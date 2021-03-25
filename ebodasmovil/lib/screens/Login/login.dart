@@ -24,7 +24,6 @@ class LoginScreen extends StatelessWidget {
           children: [
             Image.asset(
               '$imgPath/Fondo.png',
-              alignment: Alignment.topCenter,
               fit: BoxFit.cover,
               height: height * 0.45,
             ),
@@ -48,6 +47,7 @@ class LoginScreen extends StatelessWidget {
                       icon: Icons.person,
                       hintText: 'Correo electrónico',
                       spacing: 30,
+                      onSubmit: (val) => {},
                     ),
                     TextInputPassword(
                       spacing: 30,

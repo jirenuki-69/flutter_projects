@@ -9,6 +9,7 @@ class EbodasColors {
   static final dark = Color(0xFF343434);
   static final text = Color(0xFF707070);
   static final green = Color(0xFF6BCB85);
+  static final yellow = Color(0xFFCBCB54);
   static final red = Color(0xFFDF6D6D);
   static final blue = Color(0xFF00A8ED);
 }
