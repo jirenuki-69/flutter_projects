@@ -61,6 +61,9 @@ class AccountScreen extends StatelessWidget {
               onSubmit: (val) => {},
             ),
           ],
+        cancelButton: true,
+        onCancelPress: () => {},
+        cancelButtonText: 'Cerrar Sesión',
       ),
     );
   }

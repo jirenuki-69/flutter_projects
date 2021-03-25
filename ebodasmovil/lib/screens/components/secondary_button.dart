@@ -1,15 +1,17 @@
 import 'package:flutter/material.dart';
 
 class SecondaryButton extends StatelessWidget {
-  final VoidCallback onPressed;
-  final double width;
-  final String text;
   const SecondaryButton({
     Key key,
     @required this.onPressed,
     @required this.text,
     @required this.width,
   }) : super(key: key);
+
+  final VoidCallback onPressed;
+  final double width;
+  final String text;
+
   @override
   Widget build(BuildContext context) {
     return Column(

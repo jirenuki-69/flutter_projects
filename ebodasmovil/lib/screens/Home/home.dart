@@ -41,12 +41,19 @@ class _HomeScreenState extends State<HomeScreen> {
             ],
           ),
         ),
-        body: TabBarView(
-          children: <Widget>[
-            Portafolio(),
-            Recomendaciones(),
-            Citas(),
-          ],
+        body: Padding(
+          padding: const EdgeInsets.only(
+            left: 30,
+            right: 30,
+            top: 10,
+          ),
+          child: TabBarView(
+            children: <Widget>[
+              Portafolio(),
+              Recomendaciones(),
+              Citas(),
+            ],
+          ),
         ),
       ),
     );

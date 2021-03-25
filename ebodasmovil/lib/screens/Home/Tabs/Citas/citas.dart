@@ -12,37 +12,30 @@ class Citas extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.only(
-        left: 30,
-        right: 30,
-        top: 10,
-      ),
-      child: Column(
-        children: [
-          AddButton(
-            onPress: () => {},
-            text: 'Solicitar una cita',
+    return Column(
+      children: [
+        AddButton(
+          onPress: () => {},
+          text: 'Solicitar una cita',
+        ),
+        Expanded(
+          child: ListView.separated(
+            scrollDirection: Axis.vertical,
+            itemCount: citas.length,
+            itemBuilder: (context, index) {
+              final Cita cita = citas[index];
+              return CitaItem(cita: cita);
+            },
+            separatorBuilder: (context, __) {
+              return Divider(
+                height: 20,
+                color: Theme.of(context).primaryColorLight,
+                thickness: 1,
+              );
+            },
           ),
-          Expanded(
-            child: ListView.separated(
-              scrollDirection: Axis.vertical,
-              itemCount: citas.length,
-              itemBuilder: (context, index) {
-                final Cita cita = citas[index];
-                return CitaItem(cita: cita);
-              },
-              separatorBuilder: (context, __) {
-                return Divider(
-                  height: 20,
-                  color: Theme.of(context).primaryColorLight,
-                  thickness: 1,
-                );
-              },
-            ),
-          ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

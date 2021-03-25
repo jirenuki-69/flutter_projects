@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
     final lightTheme = ThemeData(
       brightness: Brightness.light,
       primaryColorLight: Colors.black,
+      errorColor: EbodasColors.red,
       scaffoldBackgroundColor: EbodasColors.light,
       primaryColor: EbodasColors.primary,
       accentColor: EbodasColors.secondary,
@@ -102,6 +103,7 @@ class MyApp extends StatelessWidget {
       brightness: Brightness.dark,
       highlightColor: Colors.transparent,
       splashColor: Colors.transparent,
+      errorColor: EbodasColors.red,
       primaryColorLight: EbodasColors.light,
       scaffoldBackgroundColor: EbodasColors.dark,
       primaryColor: EbodasColors.primaryDark,

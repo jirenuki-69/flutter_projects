@@ -106,11 +106,11 @@ class CitaItem extends StatelessWidget {
                   ),
                 ),
                 Expanded(
-                  flex: 1,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Expanded(
+                        flex: 2,
                         child: Image.asset(
                           '$imgPath/LogoNegroSecundario.png',
                           fit: BoxFit.contain,
@@ -118,35 +118,38 @@ class CitaItem extends StatelessWidget {
                         ),
                       ),
                       Expanded(
-                        child: TextButton(
-                          onPressed: () => {},
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Icon(
-                                CupertinoIcons.link,
-                                size: iconSize / 2,
-                                color: Theme.of(context).iconTheme.color,
-                              ),
-                              const SizedBox(width: 5),
-                              Text(
-                                'Ir a la reunión',
-                                style: caption.copyWith(
-                                  fontWeight: FontWeight.w600,
+                        flex: 2,
+                        child: FittedBox(
+                          child: TextButton(
+                            onPressed: () => {},
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Icon(
+                                  CupertinoIcons.link,
+                                  size: iconSize / 2,
+                                  color: Theme.of(context).iconTheme.color,
                                 ),
-                              ),
-                            ],
-                          ),
-                          style: Theme.of(context).textButtonTheme.style.copyWith(
-                            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                              RoundedRectangleBorder(
-                                side: BorderSide(
-                                  width: 0,
-                                  color: Colors.transparent,
+                                const SizedBox(width: 5),
+                                Text(
+                                  'Ir a la reunión',
+                                  style: caption.copyWith(
+                                    fontWeight: FontWeight.w600,
+                                  ),
                                 ),
-                              ),
+                              ],
                             ),
-                            animationDuration: const Duration(milliseconds: 400),
+                            style: Theme.of(context).textButtonTheme.style.copyWith(
+                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                                RoundedRectangleBorder(
+                                  side: BorderSide(
+                                    width: 0,
+                                    color: Colors.transparent,
+                                  ),
+                                ),
+                              ),
+                              animationDuration: const Duration(milliseconds: 400),
+                            ),
                           ),
                         ),
                       ),
