@@ -1,3 +1,5 @@
+import 'package:ebodasmovil/route_builder.dart';
+import 'package:ebodasmovil/screens/FormularioCita/formulario_cita.dart';
 import 'package:ebodasmovil/screens/Home/components/no_info.dart';
 import 'package:flutter/material.dart';
 
@@ -9,7 +11,13 @@ class Recomendaciones extends StatelessWidget {
     return Container(
       child: NoInfo(
         message: 'Sin recomendaciones.\nSolicite una cita',
-        onPressed: () => {},
+        onPressed: () => Navigator.push(
+          context,
+          CustomPageRouteBuilder(
+            routeName: FormularioCita.routeName,
+            page: FormularioCita(),
+          ),
+        ),
         buttonMessage: 'Solicitar una cita',
       ),
     );

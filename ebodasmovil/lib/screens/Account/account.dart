@@ -1,3 +1,4 @@
+import 'package:ebodasmovil/screens/Account/components/switcher_mode.dart';
 import 'package:ebodasmovil/screens/components/form_template.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -60,6 +61,7 @@ class AccountScreen extends StatelessWidget {
               keyboardType: TextInputType.number,
               onSubmit: (val) => {},
             ),
+            SwitcherMode(),
           ],
         cancelButton: true,
         onCancelPress: () => {},

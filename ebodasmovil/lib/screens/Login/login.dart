@@ -1,18 +1,20 @@
-import 'package:ebodasmovil/constants/const.dart';
-import 'package:ebodasmovil/screens/Home/home.dart';
-import 'package:ebodasmovil/screens/Login/components/register_text.dart';
-import 'package:ebodasmovil/screens/SignUp/sign_up.dart';
-import 'package:ebodasmovil/screens/components/logo_header.dart';
-import 'package:ebodasmovil/screens/components/primary_button.dart';
-import 'package:ebodasmovil/screens/components/text_input.dart';
-import 'package:ebodasmovil/screens/components/text_input_password.dart';
-import 'package:ebodasmovil/theme.dart';
+import 'package:ebodasmovil/route_builder.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../constants/const.dart';
+import '../Home/home.dart';
+import '../SignUp/sign_up.dart';
+import '../components/logo_header.dart';
+import '../components/primary_button.dart';
+import '../components/text_input.dart';
+import '../components/text_input_password.dart';
+import 'components/register_text.dart';
+
 class LoginScreen extends StatelessWidget {
   const LoginScreen({Key key}) : super(key: key);
+  static String routeName = '/Login';
 
   @override
   Widget build(BuildContext context) {
@@ -56,14 +58,23 @@ class LoginScreen extends StatelessWidget {
                     PrimaryButton(
                       onPressed: () => Navigator.push(
                         context,
-                        CupertinoPageRoute(
-                          builder: (context) => HomeScreen(),
+                        CustomPageRouteBuilder(
+                          page: HomeScreen(),
+                          routeName: HomeScreen.routeName,
                         ),
                       ),
                       text: 'Iniciar Sesión',
                       width: width * 0.6,
                     ),
-                    RegisterText(),
+                    RegisterText(
+                      onPress: () => Navigator.push(
+                        context,
+                        CustomPageRouteBuilder(
+                          page: SignUpScreen(),
+                          routeName: SignUpScreen.routeName,
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),

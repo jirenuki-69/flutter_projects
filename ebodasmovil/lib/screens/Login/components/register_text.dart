@@ -1,9 +1,13 @@
-import 'package:ebodasmovil/screens/SignUp/sign_up.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class RegisterText extends StatelessWidget {
-  const RegisterText({Key key}) : super(key: key);
+  const RegisterText({
+    Key key,
+    @required this.onPress,
+  }) : super(key: key);
+
+  final VoidCallback onPress;
 
   @override
   Widget build(BuildContext context) {
@@ -15,14 +19,7 @@ class RegisterText extends StatelessWidget {
           style: Theme.of(context).textTheme.subtitle1,
         ),
         InkWell(
-          onTap: () => {
-            Navigator.push(
-              context,
-              CupertinoPageRoute(
-                builder: (context) => SignUpScreen(),
-              ),
-            ),
-          },
+          onTap: onPress,
           child: Padding(
             padding: const EdgeInsets.all(5.0),
             child: Text(

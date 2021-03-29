@@ -14,7 +14,7 @@ class LogoHeader extends StatelessWidget {
           color: Theme.of(context).primaryColorLight,
           fit: BoxFit.contain,
           width: width * 0.7,
-          height: 120,
+          height: 110,
         ),
         const SizedBox(height: 20),
       ],

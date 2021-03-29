@@ -1,16 +1,33 @@
 import 'package:ebodasmovil/screens/components/form_template.dart';
-import 'package:ebodasmovil/screens/components/logo_header.dart';
-import 'package:ebodasmovil/screens/components/text_input.dart';
-import 'package:ebodasmovil/screens/components/text_input_password.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class SignUpScreen extends StatelessWidget {
+class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key key}) : super(key: key);
+  static String routeName = '/SignUp';
+
+  @override
+  _SignUpScreenState createState() => _SignUpScreenState();
+}
+
+class _SignUpScreenState extends State<SignUpScreen> {
+  bool obscure;
+
+  @override
+  void initState() {
+    obscure = true;
+    super.initState();
+  }
+
+  void _changeVisibility() {
+    setState(() {
+      obscure = !obscure;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
-    final double SPACING = 30;
+    final _separator = const SizedBox(height: 30);
     return Scaffold(
       body: FormTemplate(
         mainButtonText: 'Comenzar',
@@ -20,40 +37,84 @@ class SignUpScreen extends StatelessWidget {
           Navigator.of(context).pop(),
         },
         children: <Widget>[
-          TextInput(
-            hintText: 'Nombre(s)',
-            icon: Icons.person,
-            spacing: SPACING,
-            onSubmit: (val) => {},
-          ),
-          TextInput(
-            hintText: 'Apellido(s)',
-            icon: Icons.person,
-            spacing: SPACING,
-            onSubmit: (val) => {},
-          ),
-          TextInput(
-            hintText: 'Usuario',
-            icon: Icons.supervised_user_circle_sharp,
-            spacing: SPACING,
-            onSubmit: (val) => {},
-          ),
-          TextInput(
-            keyboardType: TextInputType.emailAddress,
-            hintText: 'Correo electrónico',
-            icon: Icons.email_sharp,
-            spacing: SPACING,
-            onSubmit: (val) => {},
-          ),
-          TextInputPassword(
-            spacing: SPACING,
-          ),
-          TextInput(
-            keyboardType: TextInputType.number,
-            hintText: 'Teléfono',
-            icon: Icons.phone_android_sharp,
-            spacing: SPACING,
-            onSubmit: (val) => {},
+          Form(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                TextFormField(
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                    hintText: 'Nombre(s)',
+                  ),
+                ),
+                _separator,
+                TextFormField(
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.person,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                    hintText: 'Apellido(s)',
+                  ),
+                ),
+                _separator,
+                TextFormField(
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      CupertinoIcons.person_2_fill,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                    hintText: 'Nombre(s) de la pareja',
+                  ),
+                ),
+                _separator,
+                TextFormField(
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      CupertinoIcons.person_2_fill,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                    hintText: 'Apellido(s) de la pareja',
+                  ),
+                ),
+                _separator,
+                TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.mail_sharp,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                    hintText: 'Correo electrónico',
+                  ),
+                ),
+                _separator,
+                TextFormField(
+                  keyboardType: TextInputType.emailAddress,
+                  obscureText: obscure,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.lock_sharp,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                    suffixIcon: IconButton(
+                      onPressed: _changeVisibility,
+                      icon: Icon(
+                        obscure
+                          ? Icons.visibility_sharp
+                          : Icons.visibility_off_sharp,
+                        color: Theme.of(context).iconTheme.color,
+                      ),
+                    ),
+                    hintText: 'Contraseña',
+                  ),
+                ),
+                _separator,
+              ],
+            ),
           ),
         ],
       ),

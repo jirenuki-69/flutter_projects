@@ -9,9 +9,11 @@ class CitaItem extends StatelessWidget {
   const CitaItem({
     Key key,
     @required this.cita,
+    @required this.itemHeight,
   }) : super(key: key);
 
   final Cita cita;
+  final double itemHeight;
 
   @override
   Widget build(BuildContext context) {
@@ -20,9 +22,9 @@ class CitaItem extends StatelessWidget {
     const widthSeparator = const SizedBox(width: 10);
     const heightSeparator = const SizedBox(height: 5);
     return Container(
-      height: 160,
+      height: itemHeight,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
           Text(
             cita.status.toString(),
