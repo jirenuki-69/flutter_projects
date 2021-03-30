@@ -48,7 +48,6 @@ class AccountScreen extends StatelessWidget {
               keyboardType: TextInputType.number,
               onSubmit: (val) => {},
             ),
-            // TODO: Date Picker
             TextInputTitle(
               title: 'Fecha de la boda',
               icon: CupertinoIcons.calendar,

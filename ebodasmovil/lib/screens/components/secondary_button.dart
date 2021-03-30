@@ -21,10 +21,17 @@ class SecondaryButton extends StatelessWidget {
           height: 45,
           child: TextButton(
             onPressed: onPressed,
-            child: Text(
-              text,
-              style: Theme.of(context).textTheme.subtitle1
+            style: ElevatedButton.styleFrom(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(5.0),
+                side: BorderSide(
+                  color: Theme.of(context).dividerColor,
+                  width: 2,
+                  style: BorderStyle.solid,
+                ),
+              ),
             ),
+            child: Text(text, style: Theme.of(context).textTheme.subtitle1),
           ),
         ),
         const SizedBox(

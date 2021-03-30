@@ -24,15 +24,15 @@ class _ListaCategoriasState extends State<ListaCategorias> {
   Widget build(BuildContext context) {
     final double _separation = 20.0;
     return Container(
-      height: 30,
+      height: 25,
       margin: EdgeInsets.only(
-        bottom: 10.0,
+        bottom: 20.0,
       ),
       padding: EdgeInsets.symmetric(
         horizontal: 20.0,
       ),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           InkWell(
             onTap: () => _cambiarCategoria('Todos'),
@@ -48,23 +48,35 @@ class _ListaCategoriasState extends State<ListaCategorias> {
               ),
             ),
           ),
-          SizedBox(width: _separation),
+          SizedBox(width: _separation / 2),
+          Container(
+            width: 1,
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: Theme.of(context).iconTheme.color,
+                width: 1
+              ),
+            ),
+          ),
+          SizedBox(width: _separation / 2),
           Expanded(
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
               itemCount: categorias.length,
               itemBuilder: (context, index) {
                 final String categoria = categorias[index];
-                return InkWell(
-                  onTap: () => _cambiarCategoria(categoria),
-                  child: Text(
-                    categoria,
-                    style: Theme.of(context).textTheme.bodyText1.copyWith(
-                      fontWeight: FontWeight.w600,
-                      color: (
-                        categoriaSeleccionada == categoria
-                          ? Theme.of(context).accentColor
-                          : null
+                return Center(
+                  child: InkWell(
+                    onTap: () => _cambiarCategoria(categoria),
+                    child: Text(
+                      categoria,
+                      style: Theme.of(context).textTheme.bodyText1.copyWith(
+                        fontWeight: FontWeight.w600,
+                        color: (
+                          categoriaSeleccionada == categoria
+                            ? Theme.of(context).accentColor
+                            : null
+                        ),
                       ),
                     ),
                   ),

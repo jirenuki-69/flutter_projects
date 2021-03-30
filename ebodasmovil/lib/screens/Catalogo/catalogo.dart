@@ -24,7 +24,15 @@ class Catalogo extends StatelessWidget {
                 Buscador(),
                 ListaCategorias(),
                 ListaProveedores(),
-                InfoProveedor(),
+                AnimatedBuilder(
+                  animation: catalogoBloc,
+                  builder: (context, snapshot) {
+                    return InfoProveedor(
+                      key: Key(catalogoBloc.proveedorSeleccionado.id),
+                      proveedor: catalogoBloc.proveedorSeleccionado,
+                    );
+                  },
+                ),
               ],
             ),
           ),
@@ -42,7 +50,8 @@ class CatalogoInheritedWidget extends InheritedWidget {
 
   final Widget child;
   final CatalogoBloc catalogoBloc;
-  static CatalogoInheritedWidget of(BuildContext context) => context.dependOnInheritedWidgetOfExactType();
+  static CatalogoInheritedWidget of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType();
 
   @override
   bool updateShouldNotify(covariant InheritedWidget oldWidget) => true;

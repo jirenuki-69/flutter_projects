@@ -18,6 +18,7 @@ class Portafolio extends StatefulWidget {
 class _PortafolioState extends State<Portafolio> {
   ScrollController _scrollController;
   double offSetPerItem = 0;
+  bool loading = true;
   final double itemHeight = 180.0;
 
   void _onScroll() {
@@ -28,9 +29,14 @@ class _PortafolioState extends State<Portafolio> {
 
   @override
   void initState() {
+    Future.delayed(const Duration(seconds: 2), () {
+      setState(() {
+        loading = false;
+      });
+    });
     _scrollController = new ScrollController()..addListener(_onScroll);
     super.initState();
-  }
+  } 
 
   @override
   void dispose() {
@@ -40,6 +46,11 @@ class _PortafolioState extends State<Portafolio> {
 
   @override
   Widget build(BuildContext context) {
+    if (loading) {
+      return Center(
+        child: CircularProgressIndicator(),
+      );
+    }
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.stretch,

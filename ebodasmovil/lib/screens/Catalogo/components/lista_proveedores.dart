@@ -38,6 +38,7 @@ class _ListaProveedoresState extends State<ListaProveedores> {
   @override
   Widget build(BuildContext context) {
     final catalogoBloc = CatalogoInheritedWidget.of(context).catalogoBloc;
+    final _textSeparator = const SizedBox(height: 5);
     return Container(
       height: 225,
       margin: EdgeInsets.only(
@@ -48,115 +49,106 @@ class _ListaProveedoresState extends State<ListaProveedores> {
         physics: BouncingScrollPhysics(),
         itemCount: portafolio.length,
         itemBuilder: (_, index) {
-          // TODO: Hacerlo bien XD
           final Proveedor proveedor = portafolio[index];
           double percent = 1 - ((page - index).abs() * 0.2);
-          return Transform(
-            transform: Matrix4.identity()
-              ..scale(
-                1.0,
-                percent,
-              ),
+          return Transform.scale(
+            scale: percent,
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                horizontal: 10.0 * percent,
+              padding: const EdgeInsets.symmetric(
+                horizontal: 5.0,
               ),
-              child: LayoutBuilder(
-                builder: (context, constraints) {
-                  return InkWell(
-                    onTap: () => catalogoBloc.cambioProveedor(proveedor),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: <Widget>[
-                        ClipRRect(
-                          borderRadius: BorderRadius.circular(
-                            10.0,
-                          ),
-                          child: Image(
-                            height: constraints.maxHeight * 0.7,
-                            image: NetworkImage(proveedor.imagenes[2]),
-                            loadingBuilder: (context, child, progress) {
-                              if (progress == null) {
-                                return child;
-                              }
-                              return Center(
-                                child: CircularProgressIndicator(
-                                  value: (progress.expectedTotalBytes != null
-                                      ? (progress.cumulativeBytesLoaded /
-                                          progress.expectedTotalBytes)
-                                      : null),
-                                ),
-                              );
-                            },
-                            errorBuilder: (_, __, ___) {
-                              return ErrorImage();
-                            },
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                        const SizedBox(height: 5),
-                        Expanded(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: <Widget>[
-                              Expanded(
-                                flex: 1,
-                                child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: <Widget>[
-                                    Expanded(
-                                      flex: 2,
-                                      child: Text(
-                                        proveedor.nombre,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .subtitle2
-                                            .copyWith(
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                        maxLines: 1,
-                                        overflow: TextOverflow.ellipsis,
-                                      ),
-                                    ),
-                                    Expanded(
-                                      child: Text(
-                                        proveedor.categoria.first,
-                                        style: Theme.of(context)
-                                            .textTheme
-                                            .caption
-                                            .copyWith(
-                                              color: Theme.of(context).accentColor,
-                                              fontWeight: FontWeight.w600,
-                                            ),
-                                        textAlign: TextAlign.right,
-                                        maxLines: 1,
-                                        overflow: TextOverflow.visible,
-                                      ),
-                                    ),
-                                  ],
-                                ),
+              child: InkWell(
+                onTap: () => catalogoBloc.cambioProveedor(proveedor),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: <Widget>[
+                    Expanded(
+                      flex: 2,
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(10.0),
+                        child: Image(
+                          image: NetworkImage(proveedor.imagenes[2]),
+                          loadingBuilder: (context, child, progress) {
+                            if (progress == null) {
+                              return child;
+                            }
+                            return Center(
+                              child: CircularProgressIndicator(
+                                value: (progress.expectedTotalBytes != null
+                                    ? (progress.cumulativeBytesLoaded /
+                                        progress.expectedTotalBytes)
+                                    : null),
                               ),
-                            ],
-                          ),
+                            );
+                          },
+                          errorBuilder: (_, __, ___) {
+                            return ErrorImage();
+                          },
+                          fit: BoxFit.cover,
                         ),
-                        const SizedBox(height: 5.0),
-                        Expanded(
-                          flex: 2,
-                          child: Text(
-                            proveedor.descripcion,
-                            style: Theme.of(context).textTheme.overline.copyWith(
-                              letterSpacing: 0.5,
-                            ),
-                            maxLines: 4,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.left,
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
-                  );
-                },
+                    _textSeparator,
+                    Expanded(
+                      flex: 1,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: <Widget>[
+                          Expanded(
+                            flex: 1,
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Expanded(
+                                  flex: 2,
+                                  child: Text(
+                                    proveedor.nombre,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .subtitle2
+                                        .copyWith(
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                                Expanded(
+                                  flex: 1,
+                                  child: Text(
+                                    proveedor.categoria.first,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .caption
+                                        .copyWith(
+                                          color: Theme.of(context).accentColor,
+                                          fontWeight: FontWeight.w600,
+                                        ),
+                                    textAlign: TextAlign.right,
+                                    maxLines: 1,
+                                    overflow: TextOverflow.visible,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          _textSeparator,
+                          Expanded(
+                            flex: 2,
+                            child: Text(
+                              proveedor.descripcion,
+                              style: Theme.of(context).textTheme.overline.copyWith(
+                                letterSpacing: 0.5,
+                              ),
+                              overflow: TextOverflow.clip,
+                              textAlign: TextAlign.left,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           );
