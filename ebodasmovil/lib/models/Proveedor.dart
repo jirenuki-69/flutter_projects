@@ -23,10 +23,10 @@ final List<Proveedor> portafolio = <Proveedor>[
     categoria: [
       'Florería',
       'Luz y Sonido',
-      'Banqueteras',
+      'Banquetera',
       'Florería',
       'Luz y Sonido',
-      'Banqueteras',
+      'Banquetera',
     ],
     descripcion: 'Eu consequat do laboris cupidatat non duis reprehenderit non sunt excepteur excepteur. Commodo elit culpa laborum adipisicing commodo ipsum consectetur consequat sint proident cillum. Reprehenderit sunt qui tempor nostrud dolore fugiat deserunt irure enim ea. Consequat exercitation velit consectetur ipsum pariatur pariatur excepteur minim voluptate id minim id Lorem. Excepteur qui exercitation minim nulla amet. Duis id qui labore officia non occaecat non consectetur amet officia adipisicing. Enim aliquip eiusmod est minim nisi proident excepteur aute non fugiat excepteur proident consequat deserunt.',
     imagenes: [

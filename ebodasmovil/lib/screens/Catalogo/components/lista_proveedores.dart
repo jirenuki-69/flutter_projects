@@ -4,6 +4,10 @@ import 'package:ebodasmovil/screens/components/error_image.dart';
 import 'package:flutter/material.dart';
 
 class ListaProveedores extends StatefulWidget {
+  const ListaProveedores({
+    Key key,
+  }) : super(key: key);
+
   @override
   _ListaProveedoresState createState() => _ListaProveedoresState();
 }
@@ -24,6 +28,7 @@ class _ListaProveedoresState extends State<ListaProveedores> {
 
   @override
   void initState() {
+    print('Hola');
     _pageController.addListener(_onScroll);
     super.initState();
   }
@@ -39,6 +44,17 @@ class _ListaProveedoresState extends State<ListaProveedores> {
   Widget build(BuildContext context) {
     final catalogoBloc = CatalogoInheritedWidget.of(context).catalogoBloc;
     final _textSeparator = const SizedBox(height: 5);
+    if (catalogoBloc.loading) {
+      return Container(
+        height: 225,
+        margin: EdgeInsets.only(
+          bottom: 20.0,
+        ),
+        child: Center(
+          child: CircularProgressIndicator(),
+        ),
+      );
+    }
     return Container(
       height: 225,
       margin: EdgeInsets.only(
@@ -47,9 +63,9 @@ class _ListaProveedoresState extends State<ListaProveedores> {
       child: PageView.builder(
         controller: _pageController,
         physics: BouncingScrollPhysics(),
-        itemCount: portafolio.length,
+        itemCount: catalogoBloc.proveedoresFiltrados.length,
         itemBuilder: (_, index) {
-          final Proveedor proveedor = portafolio[index];
+          final Proveedor proveedor = catalogoBloc.proveedoresFiltrados[index];
           double percent = 1 - ((page - index).abs() * 0.2);
           return Transform.scale(
             scale: percent,
@@ -137,9 +153,10 @@ class _ListaProveedoresState extends State<ListaProveedores> {
                             flex: 2,
                             child: Text(
                               proveedor.descripcion,
-                              style: Theme.of(context).textTheme.overline.copyWith(
-                                letterSpacing: 0.5,
-                              ),
+                              style:
+                                  Theme.of(context).textTheme.overline.copyWith(
+                                        letterSpacing: 0.5,
+                                      ),
                               overflow: TextOverflow.clip,
                               textAlign: TextAlign.left,
                             ),

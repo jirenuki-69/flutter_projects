@@ -23,10 +23,17 @@ class Catalogo extends StatelessWidget {
               children: <Widget>[
                 Buscador(),
                 ListaCategorias(),
-                ListaProveedores(),
                 AnimatedBuilder(
                   animation: catalogoBloc,
-                  builder: (context, snapshot) {
+                  builder: (context, _) {
+                    return ListaProveedores(
+                      key: Key(catalogoBloc.proveedoresFiltrados.join()),
+                    );
+                  }
+                ),
+                AnimatedBuilder(
+                  animation: catalogoBloc,
+                  builder: (context, _) {
                     return InfoProveedor(
                       key: Key(catalogoBloc.proveedorSeleccionado.id),
                       proveedor: catalogoBloc.proveedorSeleccionado,

@@ -20,7 +20,8 @@ class InfoProveedor extends StatefulWidget {
   _InfoProveedorState createState() => _InfoProveedorState();
 }
 
-class _InfoProveedorState extends State<InfoProveedor> with SingleTickerProviderStateMixin {
+class _InfoProveedorState extends State<InfoProveedor>
+    with SingleTickerProviderStateMixin {
   AnimationController _animationController;
   Animation<double> _fadeAnimation;
 
@@ -39,10 +40,10 @@ class _InfoProveedorState extends State<InfoProveedor> with SingleTickerProvider
         curve: Curves.easeIn,
       ),
     )..addListener(() {
-      setState(() {
-        // The state that has changed here is the animation object’s value.
+        setState(() {
+          // The state that has changed here is the animation object’s value.
+        });
       });
-    });
     _animationController.forward();
     super.initState();
   }

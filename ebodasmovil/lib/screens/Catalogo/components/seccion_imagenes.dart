@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:ebodasmovil/models/Proveedor.dart';
 import 'package:ebodasmovil/screens/ImagenesProveedor/imagenes_proveedor.dart';
 import 'package:ebodasmovil/screens/components/error_image.dart';
@@ -17,6 +19,7 @@ class SeccionImagenes extends StatefulWidget {
 
 class _SeccionImagenesState extends State<SeccionImagenes> {
   PageController _pageController;
+  Timer _timer;
   final _duration = const Duration(milliseconds: 200);
 
   void _changeToPreviousImage() {
@@ -51,17 +54,30 @@ class _SeccionImagenesState extends State<SeccionImagenes> {
     }
   }
 
+  void _resetTimer() {
+    _timer.cancel();
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      _changeToNextImage();
+    });
+  }
+
   @override
   void initState() {
     _pageController = PageController(
       initialPage: 0,
     );
+    _timer = Timer.periodic(const Duration(seconds: 5), (timer) {
+      _changeToNextImage();
+    });
     super.initState();
   }
 
   @override
   void dispose() {
     _pageController.dispose();
+    if (_timer.isActive) {
+      _timer.cancel();
+    }
     super.dispose();
   }
 
@@ -91,7 +107,10 @@ class _SeccionImagenesState extends State<SeccionImagenes> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: <Widget>[
               IconButton(
-                onPressed: _changeToPreviousImage,
+                onPressed: () {
+                  _changeToPreviousImage();
+                  _resetTimer();
+                },
                 icon: Icon(
                   Icons.keyboard_arrow_left_sharp,
                   color: Theme.of(context).iconTheme.color,
@@ -150,7 +169,10 @@ class _SeccionImagenesState extends State<SeccionImagenes> {
                 ),
               ),
               IconButton(
-                onPressed: _changeToNextImage,
+                onPressed: () {
+                  _changeToNextImage();
+                  _resetTimer();
+                },
                 icon: Icon(
                   Icons.keyboard_arrow_right_sharp,
                   color: Theme.of(context).iconTheme.color,

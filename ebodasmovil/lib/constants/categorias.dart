@@ -1,8 +1,9 @@
 List<String> categorias = <String>[
   'Florería',
   'Fotografía',
-  'Banquetes',
+  'Banquetera',
   'Luz y Sonido',
+  'Salones',
   'Música',
   'Fiestas',
   'Bailes',

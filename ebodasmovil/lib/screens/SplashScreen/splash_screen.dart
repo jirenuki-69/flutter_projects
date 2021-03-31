@@ -1,6 +1,5 @@
 import 'package:arc_animator/arc_animator.dart';
 import 'package:ebodasmovil/constants/const.dart';
-import 'package:ebodasmovil/route_builder.dart';
 import 'package:ebodasmovil/screens/Login/login.dart';
 import 'package:flutter/material.dart';
 

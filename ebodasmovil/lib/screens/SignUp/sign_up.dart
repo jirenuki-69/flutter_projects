@@ -11,6 +11,7 @@ class SignUpScreen extends StatefulWidget {
 }
 
 class _SignUpScreenState extends State<SignUpScreen> {
+  final _formKey = GlobalKey<FormState>();
   bool obscure;
 
   @override
@@ -25,19 +26,23 @@ class _SignUpScreenState extends State<SignUpScreen> {
     });
   }
 
+  String _validatePassword(String value) {
+    String restricion = r'^(?=.*[0-9])(?=.*[!@#$%^&*]).{7,}$';
+    RegExp regularExpression = RegExp(restricion);
+
+    if (!regularExpression.hasMatch(value)) {
+      return 'La contraseña debe de tener mínimo 7 caracteres. 1 número y un carácter especial incluidos';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final _separator = const SizedBox(height: 30);
     return Scaffold(
       body: FormTemplate(
-        mainButtonText: 'Comenzar',
-        secondaryButtonText: 'Regresar',
-        onMainPress: () => {},
-        onSecondaryPress: () => {
-          Navigator.of(context).pop(),
-        },
         children: <Widget>[
           Form(
+            key: _formKey,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
@@ -49,6 +54,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     hintText: 'Nombre(s)',
                   ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Ingrese su nombre por favor';
+                    }
+                    return null;
+                  },
                 ),
                 _separator,
                 TextFormField(
@@ -59,6 +70,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     hintText: 'Apellido(s)',
                   ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Ingrese sus apellidos por favor';
+                    }
+                    return null;
+                  },
                 ),
                 _separator,
                 TextFormField(
@@ -69,6 +86,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     hintText: 'Nombre(s) de la pareja',
                   ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Ingrese el nombre de su pareja por favor';
+                    }
+                    return null;
+                  },
                 ),
                 _separator,
                 TextFormField(
@@ -79,6 +102,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     ),
                     hintText: 'Apellido(s) de la pareja',
                   ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Ingrese los apellidos de su pareja por favor';
+                    }
+                    return null;
+                  },
                 ),
                 _separator,
                 TextFormField(
@@ -89,6 +118,17 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       color: Theme.of(context).iconTheme.color,
                     ),
                     hintText: 'Correo electrónico',
+                  ),
+                ),
+                _separator,
+                TextFormField(
+                  keyboardType: TextInputType.number,
+                  decoration: InputDecoration(
+                    prefixIcon: Icon(
+                      Icons.phone_android_sharp,
+                      color: Theme.of(context).iconTheme.color,
+                    ),
+                    hintText: 'Número de teléfono',
                   ),
                 ),
                 _separator,
@@ -104,19 +144,31 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       onPressed: _changeVisibility,
                       icon: Icon(
                         obscure
-                          ? Icons.visibility_sharp
-                          : Icons.visibility_off_sharp,
+                            ? Icons.visibility_sharp
+                            : Icons.visibility_off_sharp,
                         color: Theme.of(context).iconTheme.color,
                       ),
                     ),
                     hintText: 'Contraseña',
+                    errorMaxLines: 10,
                   ),
+                  validator: _validatePassword,
                 ),
                 _separator,
               ],
             ),
           ),
         ],
+        mainButtonText: 'Comenzar',
+        secondaryButtonText: 'Regresar',
+        onMainPress: () {
+          if (_formKey.currentState.validate()) {
+            // Process data.
+          }
+        },
+        onSecondaryPress: () => {
+          Navigator.of(context).pop(),
+        },
       ),
     );
   }
