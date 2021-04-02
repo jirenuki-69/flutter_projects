@@ -1,3 +1,4 @@
+import 'package:artemisfood/src/presentation/main_binding.dart';
 import 'package:artemisfood/src/presentation/routes/artemisfood_navigation.dart';
 import 'package:artemisfood/src/presentation/theme.dart';
 import 'package:flutter/material.dart';
@@ -11,6 +12,7 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final lightTheme = ThemeData(
       primaryColor: ArtemisFoodColors.primaryColor,
+      accentColor: ArtemisFoodColors.primaryColor,
       scaffoldBackgroundColor: ArtemisFoodColors.lightColor,
       textTheme: GoogleFonts.montserratTextTheme().apply(
         displayColor: ArtemisFoodColors.lightThemeTextColor,
@@ -27,7 +29,7 @@ class App extends StatelessWidget {
           primary: ArtemisFoodColors.primaryColor,
           padding: EdgeInsets.all(15.0),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30.0),
+            borderRadius: BorderRadius.circular(10.0),
           ),
         ),
       ),
@@ -57,8 +59,9 @@ class App extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Artemis Food Mobile',
       theme: lightTheme,
-      initialRoute: ArtemisFoodRoutes.loginScreen,
+      initialRoute: ArtemisFoodRoutes.splashScreen,
       getPages: ArtemisFoodPages.pages,
+      initialBinding: MainBinding(), // Inyectar dependencias
     );
   }
 }

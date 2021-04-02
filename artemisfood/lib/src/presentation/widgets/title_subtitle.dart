@@ -27,6 +27,7 @@ class TitleSubtitle extends StatelessWidget {
             fontWeight: FontWeight.w600,
           ),
         ),
+        const SizedBox(height: 20.0),
       ],
     );
   }

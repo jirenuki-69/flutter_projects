@@ -1,6 +1,6 @@
 import 'package:artemisfood/src/domain/models/usuario.dart';
 
-abstract class LocalStorageInterface {
+abstract class LocalRepositoryInterface {
   Future<String> getToken();
   Future<String> saveToken(String token);
   Future<void> clearAllData();

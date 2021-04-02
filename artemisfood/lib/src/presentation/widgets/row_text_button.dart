@@ -3,7 +3,14 @@ import 'package:flutter/material.dart';
 class RowTextButton extends StatelessWidget {
   const RowTextButton({
     Key key,
+    @required this.onPress,
+    @required this.leftText,
+    @required this.rightText,
   }) : super(key: key);
+
+  final VoidCallback onPress;
+  final String leftText;
+  final String rightText;
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +23,12 @@ class RowTextButton extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: <Widget>[
           Text(
-            '¿Nuevo usuario?',
+            leftText,
             style: Theme.of(context).textTheme.bodyText1,
           ),
           TextButton(
-            onPressed: () => {},
-            child: Text(
-              'Regístrate',
-            ),
+            onPressed: onPress,
+            child: Text(rightText),
           ),
         ],
       ),
