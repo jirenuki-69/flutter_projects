@@ -7,8 +7,7 @@ class Proveedor {
     @required this.descripcion,
     @required this.imagenes,
     @required this.categoria,
-
-});
+  });
   String id;
   String nombre;
   String descripcion;
