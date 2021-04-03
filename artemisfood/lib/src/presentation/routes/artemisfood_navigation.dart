@@ -6,6 +6,7 @@ import 'package:artemisfood/src/presentation/SignUp/sign_up.dart';
 import 'package:artemisfood/src/presentation/SignUp/sign_up_binding.dart';
 import 'package:artemisfood/src/presentation/Splash/splash_binding.dart';
 import 'package:artemisfood/src/presentation/Splash/splash_screen.dart';
+import 'package:artemisfood/src/presentation/main_binding.dart';
 import 'package:get/get.dart';
 
 class ArtemisFoodRoutes {
@@ -25,17 +26,26 @@ class ArtemisFoodPages {
     GetPage(
       name: ArtemisFoodRoutes.loginScreen,
       page: () => LoginScreen(),
-      binding: LoginBinding(),
+      bindings: <Bindings>[
+        MainBinding(),
+        LoginBinding(),
+      ],
     ),
     GetPage(
       name: ArtemisFoodRoutes.signUpScreen,
       page: () => SignUpScreen(),
-      binding: SignUpBinding(),
+      bindings: <Bindings>[
+        MainBinding(),
+        SignUpBinding(),
+      ],
     ),
     GetPage(
       name: ArtemisFoodRoutes.homeScreen,
       page: () => HomeScreen(),
-      binding: HomeBinding(),
+      bindings: <Bindings>[
+        MainBinding(),
+        HomeBinding(),
+      ],
     ),
   ];
 }

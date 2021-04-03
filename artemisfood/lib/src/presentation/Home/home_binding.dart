@@ -7,6 +7,7 @@ class HomeBinding extends Bindings {
     Get.lazyPut(
       () => HomeController(
         apiRepositoryInterface: Get.find(),
+        productsRepositoryInterface: Get.find(),
       ),
     );
   }

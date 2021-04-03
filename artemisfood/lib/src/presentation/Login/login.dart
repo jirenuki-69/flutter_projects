@@ -1,6 +1,7 @@
 import 'package:artemisfood/src/presentation/Login/login_controller.dart';
 import 'package:artemisfood/src/presentation/routes/artemisfood_navigation.dart';
 import 'package:artemisfood/src/presentation/widgets/custom_text_field.dart';
+import 'package:artemisfood/src/presentation/widgets/password_text_field.dart';
 import 'package:artemisfood/src/presentation/widgets/primary_button.dart';
 import 'package:artemisfood/src/presentation/widgets/row_text_button.dart';
 import 'package:artemisfood/src/presentation/widgets/title_subtitle.dart';
@@ -44,10 +45,8 @@ class LoginScreen extends GetWidget<LoginController> {
                   icon: Icons.person,
                   widthFactor: 0.85,
                 ),
-                CustomTextField(
+                PasswordTextField(
                   controller: controller.passwordTextController,
-                  hintText: 'Contraseña',
-                  icon: Icons.vpn_key,
                   widthFactor: 0.85,
                   spacing: 40.0,
                 ),
@@ -61,8 +60,8 @@ class LoginScreen extends GetWidget<LoginController> {
                   child: Text(
                     '¿Olvidaste tu contraseña?',
                     style: Theme.of(context).textTheme.caption.copyWith(
-                          color: Theme.of(context).primaryColor,
-                        ),
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
                 ),
                 RowTextButton(

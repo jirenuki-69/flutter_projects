@@ -8,7 +8,7 @@ class Background extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
-    final double containerHeight = height * 0.45;
+    final double containerHeight = height * 0.4;
     final double miniContainerSize = 100.0;
     final titleStyle = Theme.of(context).textTheme.headline4.copyWith(
       color: Colors.white,
