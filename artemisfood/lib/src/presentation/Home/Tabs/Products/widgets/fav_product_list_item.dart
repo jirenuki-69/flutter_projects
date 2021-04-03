@@ -1,8 +1,10 @@
 import 'package:artemisfood/src/domain/models/producto.dart';
+import 'package:artemisfood/src/presentation/widgets/image_error_placeholder.dart';
+import 'package:artemisfood/src/presentation/widgets/image_loading_placeholder.dart';
 import 'package:flutter/material.dart';
 
-class ProductListItem extends StatelessWidget {
-  const ProductListItem({
+class FavProductListItem extends StatelessWidget {
+  const FavProductListItem({
     Key key,
     @required this.producto,
   }) : super(key: key);
@@ -25,6 +27,15 @@ class ProductListItem extends StatelessWidget {
                   widthFactor: 1,
                   child: Image(
                     image: NetworkImage(producto.image),
+                    loadingBuilder: (_, child, progress) {
+                      if (progress != null) {
+                        return ImageLoadingPlaceholder();
+                      }
+                      return child;
+                    },
+                    errorBuilder: (_, __, ___) {
+                      return ImageErrorPlaceholder();
+                    },
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -42,9 +53,10 @@ class ProductListItem extends StatelessWidget {
                           flex: 2,
                           child: Text(
                             producto.name,
-                            style: Theme.of(context).textTheme.bodyText1.copyWith(
-                              color: Theme.of(context).primaryColor,
-                            ),
+                            style:
+                                Theme.of(context).textTheme.bodyText1.copyWith(
+                                      color: Theme.of(context).primaryColor,
+                                    ),
                             overflow: TextOverflow.ellipsis,
                           ),
                         ),
@@ -52,8 +64,8 @@ class ProductListItem extends StatelessWidget {
                           child: Text(
                             '\$${producto.price}',
                             style: Theme.of(context).textTheme.caption.copyWith(
-                              color: Theme.of(context).primaryColor,
-                            ),
+                                  color: Theme.of(context).primaryColor,
+                                ),
                             textAlign: TextAlign.right,
                           ),
                         ),

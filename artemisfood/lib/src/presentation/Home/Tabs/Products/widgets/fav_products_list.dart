@@ -2,19 +2,20 @@ import 'package:artemisfood/src/presentation/widgets/primary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-import '../home_controller.dart';
-import 'product_list_item.dart';
 
-class ProductsList extends StatefulWidget {
-  ProductsList({
+import '../../../home_controller.dart';
+import 'fav_product_list_item.dart';
+
+class FavProductsList extends StatefulWidget {
+  FavProductsList({
     Key key,
   }) : super(key: key);
 
   @override
-  _ProductsListState createState() => _ProductsListState();
+  _FavProductsListState createState() => _FavProductsListState();
 }
 
-class _ProductsListState extends State<ProductsList> {
+class _FavProductsListState extends State<FavProductsList> {
   final controller = Get.find<HomeController>();
   PageController _pageController = PageController(
     initialPage: 0,
@@ -78,7 +79,7 @@ class _ProductsListState extends State<ProductsList> {
             double percent = 1 - ((page - index).abs() * 0.2);
             return Transform.scale(
               scale: percent,
-              child: ProductListItem(
+              child: FavProductListItem(
                 producto: producto,
               ),
             );

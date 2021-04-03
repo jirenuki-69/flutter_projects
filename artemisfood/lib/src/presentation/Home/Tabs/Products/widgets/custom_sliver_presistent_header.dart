@@ -1,6 +1,8 @@
+import 'package:artemisfood/src/presentation/Home/home_controller.dart';
 import 'package:artemisfood/src/presentation/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:get/get.dart';
 
 class CustomSliverPersistentHeader implements SliverPersistentHeaderDelegate {
   CustomSliverPersistentHeader({
@@ -12,6 +14,7 @@ class CustomSliverPersistentHeader implements SliverPersistentHeaderDelegate {
   final double minExtent;
   final double maxExtent;
   final double searchBarSize;
+  final controller = Get.find<HomeController>();
 
   @override
   Widget build(
@@ -19,7 +22,7 @@ class CustomSliverPersistentHeader implements SliverPersistentHeaderDelegate {
     double shrinkOffset,
     bool overlapsContent,
   ) {
-    final style = Theme.of(context).textTheme.subtitle1.copyWith(
+    final style = Theme.of(context).textTheme.headline6.copyWith(
           fontWeight: FontWeight.w600,
         );
     return Material(
@@ -30,6 +33,7 @@ class CustomSliverPersistentHeader implements SliverPersistentHeaderDelegate {
       child: SafeArea(
         child: Container(
           padding: EdgeInsets.all(10.0),
+          color: Theme.of(context).scaffoldBackgroundColor,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -49,11 +53,11 @@ class CustomSliverPersistentHeader implements SliverPersistentHeaderDelegate {
                 ],
               ),
               CustomTextField(
-                controller: TextEditingController(),
+                controller: controller.searchTextController,
                 widthFactor: 1,
                 spacing: 0.0,
                 icon: Icons.search,
-                hintText: 'Buscar Producto',
+                hintText: 'Buscar producto',
               ),
             ],
           ),

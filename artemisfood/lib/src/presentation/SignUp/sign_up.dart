@@ -76,7 +76,7 @@ class SignUpScreen extends GetWidget<SignUpController> {
               Align(
                 alignment: Alignment.bottomCenter,
                 child: RowTextButton(
-                  onPress: () => Get.offNamed(
+                  onPress: () => Get.offAllNamed(
                     ArtemisFoodRoutes.loginScreen,
                   ),
                   leftText: '¿Ya tienes una cuenta?',

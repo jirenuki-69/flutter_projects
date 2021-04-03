@@ -2,6 +2,7 @@ import 'package:artemisfood/src/presentation/main_binding.dart';
 import 'package:artemisfood/src/presentation/routes/artemisfood_navigation.dart';
 import 'package:artemisfood/src/presentation/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,6 +15,10 @@ class App extends StatelessWidget {
       primaryColor: ArtemisFoodColors.primaryColor,
       accentColor: ArtemisFoodColors.primaryColor,
       scaffoldBackgroundColor: ArtemisFoodColors.lightColor,
+      appBarTheme: AppBarTheme(
+        backgroundColor: ArtemisFoodColors.lightColor,
+        elevation: 8.0,
+      ),
       textTheme: GoogleFonts.montserratTextTheme().apply(
         displayColor: ArtemisFoodColors.lightThemeTextColor,
         bodyColor: ArtemisFoodColors.lightThemeTextColor,
@@ -53,7 +58,15 @@ class App extends StatelessWidget {
         border: InputBorder.none,
         contentPadding: EdgeInsets.only(top: 15.0),
       ),
+      iconTheme: IconThemeData(
+        color: ArtemisFoodColors.lightColor,
+      ),
     );
+
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      systemNavigationBarColor: ArtemisFoodColors.primaryColor, // navigation bar color
+      statusBarColor: Colors.transparent, // status bar color
+    ));
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,

@@ -26,6 +26,7 @@ class RowTextButton extends StatelessWidget {
             leftText,
             style: Theme.of(context).textTheme.bodyText1,
           ),
+          const SizedBox(width: 5.0),
           TextButton(
             onPressed: onPress,
             child: Text(rightText),
