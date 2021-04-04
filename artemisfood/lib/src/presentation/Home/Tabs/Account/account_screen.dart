@@ -1,10 +1,25 @@
-import 'package:artemisfood/src/infrastructure/data/local_repository_impl.dart';
-import 'package:artemisfood/src/presentation/Home/home_controller.dart';
+import 'package:artemisfood/src/domain/repositories/api_repository.dart';
+import 'package:artemisfood/src/domain/repositories/local_storage_repository.dart';
+import 'package:artemisfood/src/presentation/Home/Tabs/Account/GestionCuenta/gestion_cuenta.dart';
+import 'package:artemisfood/src/presentation/Home/Tabs/Account/GestionFavoritos/gestion_favoritos.dart';
+import 'package:artemisfood/src/presentation/Home/Tabs/Account/Personalization/personalization.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class AccountScreen extends GetWidget<HomeController> {
-  const AccountScreen({Key key}) : super(key: key);
+import 'account_controller.dart';
+import 'widgets/main_account_screen.dart';
+
+class AccountScreen extends StatelessWidget {
+  AccountScreen({
+    Key key,
+  }) : super(key: key);
+
+  final controller = Get.put(
+    AccountController(
+      apiRepositoryInterface: Get.find<ApiRepositoryInterface>(),
+      localRepositoryInterface: Get.find<LocalRepositoryInterface>(),
+    ),
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -18,10 +33,15 @@ class AccountScreen extends GetWidget<HomeController> {
               ),
         ),
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () => LocalRepositoryImpl().clearAllData(),
-          child: Text('Clear Token'),
+      body: Obx(
+        () => IndexedStack(
+          index: controller.currentConfigurationScreen.value,
+          children: <Widget>[
+            MainAccountScreen(),
+            GestionCuentaScreen(),
+            GestionFavoritosScreen(),
+            PersonalizationScreen(),
+          ],
         ),
       ),
     );

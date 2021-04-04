@@ -14,13 +14,13 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
       return Usuario(
         name: 'Miguel Antonio',
         username: 'migueluki69',
-        image: '',
+        image: 'lib/assets/img/sova.png',
       );
     } else if (token == 'AA222') {
       return Usuario(
         name: 'Victor Moguel',
         username: 'epichacker1',
-        image: '',
+        image: 'lib/assets/img/reyna.jpg',
       );
     }
 
@@ -37,7 +37,7 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
         Usuario(
           name: 'Miguel Antonio',
           username: 'migueluki69',
-          image: '',
+          image: 'lib/assets/img/sova.png',
         ),
       );
     } else if (loginRequest.username == 'epichacker1' &&
@@ -47,7 +47,7 @@ class ApiRepositoryImpl extends ApiRepositoryInterface {
         Usuario(
           name: 'Victor Moguel',
           username: 'epichacker1',
-          image: '',
+          image: 'lib/assets/img/reyna.jpg',
         ),
       );
     }

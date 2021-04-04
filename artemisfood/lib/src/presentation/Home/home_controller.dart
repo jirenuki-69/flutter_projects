@@ -1,5 +1,6 @@
 import 'package:artemisfood/src/domain/models/producto.dart';
-import 'package:artemisfood/src/domain/repositories/api_repository.dart';
+import 'package:artemisfood/src/domain/models/usuario.dart';
+import 'package:artemisfood/src/domain/repositories/local_storage_repository.dart';
 import 'package:artemisfood/src/domain/repositories/products_repository_interface.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -12,18 +13,24 @@ enum FavProductsStatus {
 class HomeController extends GetxController {
   //Home Screen Bussiness Logic
   HomeController({
-    this.apiRepositoryInterface,
+    this.localRepositoryInterface,
     this.productsRepositoryInterface,
   });
 
   @override
   void onInit() {
-    getProducts();
     pageController.addListener(_onScroll);
     super.onInit();
   }
 
-  final ApiRepositoryInterface apiRepositoryInterface;
+  @override
+  void onReady() {
+    loadUser();
+    getProducts();
+    super.onReady();
+  }
+
+  final LocalRepositoryInterface localRepositoryInterface;
   final ProductsRepositoryInterface productsRepositoryInterface;
 
   final pageController = PageController(
@@ -32,6 +39,12 @@ class HomeController extends GetxController {
   );
   final searchTextController = TextEditingController();
 
+  //Listenables
+  Rx<Usuario> user = Usuario(
+    name: '',
+    username: '',
+    image: '',
+  ).obs;
   RxList<Producto> products = <Producto>[].obs;
   Rx<FavProductsStatus> favProductsStatus = FavProductsStatus.initial.obs;
   RxInt currentBottomNavIdx = 0.obs;
@@ -41,6 +54,11 @@ class HomeController extends GetxController {
     changeCurrentBottomNavIdx(
       pageController.page.toInt(),
     );
+  }
+
+  void loadUser() async {
+    final res = await localRepositoryInterface.getUser();
+    user(res);
   }
 
   void getProducts() async {

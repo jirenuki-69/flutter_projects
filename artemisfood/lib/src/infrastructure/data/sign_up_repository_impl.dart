@@ -23,7 +23,7 @@ class SignUpRepositoryImpl extends SignUpRepositoryInterface {
         Usuario(
           name: 'Miguel Fuentes',
           username: 'migueluki69',
-          image: '',
+          image: 'lib/assets/img/sova.png',
         ),
       );
     } else if (signUpRequest.username == 'epichacker1' &&
@@ -33,7 +33,7 @@ class SignUpRepositoryImpl extends SignUpRepositoryInterface {
         Usuario(
           name: 'Víctor Moguel',
           username: 'epichacker1',
-          image: '',
+          image: 'lib/assets/img/reyna.jpg',
         ),
       );
     }

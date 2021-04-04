@@ -1,6 +1,7 @@
 import 'package:artemisfood/src/domain/repositories/api_repository.dart';
 import 'package:artemisfood/src/domain/repositories/local_storage_repository.dart';
 import 'package:artemisfood/src/presentation/routes/artemisfood_navigation.dart';
+import 'package:artemisfood/src/presentation/theme.dart';
 import 'package:get/get.dart';
 
 class SplashController extends GetxController {
@@ -12,6 +13,12 @@ class SplashController extends GetxController {
   
   final LocalRepositoryInterface localRepositoryInterface;
   final ApiRepositoryInterface apiRepositoryInterface;
+
+  @override
+  void onInit() {
+    validateTheme();
+    super.onInit();
+  }
 
   @override
   void onReady() {
@@ -29,6 +36,15 @@ class SplashController extends GetxController {
     } else {
       await Future.delayed(const Duration(seconds: 2)); //Fake await
       Get.offNamed(ArtemisFoodRoutes.loginScreen);
+    }
+  }
+
+  void validateTheme() async {
+    final isDarkMode = await localRepositoryInterface.isDarkMode();
+    if (isDarkMode != null) {
+      Get.changeTheme(isDarkMode ? darkTheme : lightTheme); //Validate local mode ref
+    } else {
+      Get.changeTheme(Get.isDarkMode ? darkTheme : lightTheme); //Validate system mode
     }
   }
 }

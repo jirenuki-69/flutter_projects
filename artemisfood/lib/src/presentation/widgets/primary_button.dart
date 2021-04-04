@@ -6,11 +6,13 @@ class PrimaryButton extends StatelessWidget {
     @required this.onPress,
     @required this.widthFactor,
     @required this.text,
+    this.color,
   }) : super(key: key);
 
   final VoidCallback onPress;
   final double widthFactor;
   final String text;
+  final Color color;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +20,9 @@ class PrimaryButton extends StatelessWidget {
       widthFactor: widthFactor,
       child: ElevatedButton(
         onPressed: onPress,
+        style: ElevatedButton.styleFrom(
+          primary: color ?? Theme.of(context).primaryColor,
+        ),
         child: Text(
           text,
         ),
